@@ -1,24 +1,40 @@
-.image_grid {
-  margin: 3rem;
-  column-gap: 1rem;
-  column-count: 4;
-  figure {
-    & {
-      break-inside: avoid;
-      margin: 0;
-      margin-bottom: 1rem;
-      padding: 0;
-    }
-    & img {
+body {
+  & {
+    background-color: #3e753e;
+  }
+  .image_grid {
+    column-gap: 1rem;
+    column-count: 4;
+    margin: 3rem 20%;
+
+    figure {
       & {
-        border-radius: 5px;
-        width: 100%;
+        break-inside: avoid;
+        margin: 0;
+        margin-bottom: 1rem;
+        border-radius: 1rem;
+        padding: 0;
+        height: auto;
       }
-    }
-    figcaption {
-      text-transform: capitalize;
-      margin: 0;
-      padding: 0 0.5rem;
+      & img {
+        & {
+          border-radius: 0 0 1rem 1rem;
+          width: 100%;
+        }
+      }
+      figcaption {
+        border-radius: 1rem 1rem 0 0;
+        background-color: #7ec57e;
+        padding: 5px 0;
+        width: 100%;
+        color: white;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+          sans-serif;
+        text-align: center;
+        text-shadow: black 0 1px 1px;
+        text-transform: capitalize;
+      }
     }
   }
 }
