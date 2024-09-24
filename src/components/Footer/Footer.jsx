@@ -3,7 +3,7 @@ import s from "./Footer.module.scss";
 export const Footer = () => {
   return (
     <footer className={s.footerStyling}>
-      <img src="./src/assets/images/favicon.png" />
+      <img src="public/assets/images/favicon.png" />
       <article>
         <h4>
           Ingen Kaj-kager kom til skade under produktionen af denne side – men
