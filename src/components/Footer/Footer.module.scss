@@ -1,20 +1,32 @@
 .footerStyling {
-  background-color: #7ec57e;
   display: flex;
   justify-content: center;
-  height: auto;
-  padding: 3rem;
   gap: 30px;
+  background-color: #7ec57e;
+  padding: 3rem 25%;
+  height: auto;
+  @media (max-width: 1000px) {
+    padding: 3rem;
+  }
   img {
     height: 210px;
   }
   article {
+    & {
+      @media (max-width: 1200px) {
+        display: grid;
+        //   grid-template-columns: 1rem 1rem;
+      }
+    }
     h4 {
       padding-top: 1rem;
       font-size: 24px;
+      @media (max-width: 1200px) {
+        font-size: 1rem;
+      }
     }
     p {
-      font-size: 30px;
+      font-size: 1rem;
     }
   }
 }
