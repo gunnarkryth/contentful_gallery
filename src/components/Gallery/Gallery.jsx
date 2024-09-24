@@ -18,6 +18,14 @@ export const Gallery = () => {
   }, []);
   return (
     <>
+      <header>
+        {/* <img src={item.fields.header.fields.file.url} alt="" /> */}
+      </header>
+      <section>
+        <article>
+        {/* {item.fields.title} */}
+        </article>
+      </section>
       <section className={s.image_grid}>
         {gallery?.items?.map((item) => (
           <figure>
