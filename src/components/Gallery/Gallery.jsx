@@ -1,33 +1,33 @@
-import { api_key } from "./env.js";
+import * as contentful from "contentful";
+import { useEffect, useState } from "react";
+
+import s from "./Style.module.scss";
 
 export const Gallery = () => {
-  const api_url =
-    "https://api.pexels.com/v1/search?query=nature&per_page=15&size=small";
-  const image_grid = document.getElementById("image_grid");
+  const [gallery, setGallery] = useState();
 
-  fetch(api_url, {
-    headers: {
-      Authorization: api_key,
-    },
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      data.photos.forEach((photo) => {
-        const figure_element = document.createElement("figure");
+  const client = contentful.createClient({
+    space: import.meta.env.VITE_PUBLIC_SPACE_ID,
+    accessToken: import.meta.env.VITE_PUBLIC_ACCESS_TOKEN,
+  });
 
-        const img_element = document.createElement("img");
-        img_element.src = photo.src.original;
-        img_element.alt = photo.photographer;
-        img_element.classList.add("loaded");
-
-        const figcaption_element = document.createElement("figcaption");
-        figcaption_element.textContent = `${photo.photographer}`;
-
-        figure_element.appendChild(img_element);
-        figure_element.appendChild(figcaption_element);
-
-        image_grid.appendChild(figure_element);
-      });
-    })
-    .catch((error) => console.error(error));
+  useEffect(() => {
+    client
+      .getEntries({ content_type: "kajkageGallery" })
+      .then((res) => setGallery(res));
+  }, []);
+  return (
+    <>
+      <section className={s.image_grid}>
+        {gallery?.items?.map((item) => (
+          <figure>
+            <figcaption>
+              <h3>{item.fields.title}</h3>
+            </figcaption>
+            <img src={item.fields.image.fields.file.url} alt="" />
+          </figure>
+        ))}
+      </section>
+    </>
+  );
 };
