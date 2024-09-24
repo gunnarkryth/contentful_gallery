@@ -16,10 +16,7 @@ export const Gallery = () => {
   });
 
   useEffect(() => {
-    client.getEntries({ content_type: "header" }).then(
-      (res) => setHeader(res)
-      // console.log(res)
-    );
+    client.getEntries({ content_type: "header" }).then((res) => setHeader(res));
   }, []);
   useEffect(() => {
     client
@@ -33,17 +30,16 @@ export const Gallery = () => {
   }, []);
   return (
     <>
-      <header>
+      <header className={s.header}>
         <img
           src={header?.items[0]?.fields.headerImage.fields.file.url}
           alt=""
         />
-      </header>
-      <section>
         <article>
           {documentToReactComponents(description?.items[0]?.fields.description)}
         </article>
-      </section>
+      </header>
+      <section></section>
       <section className={s.image_grid}>
         {gallery?.items?.map((item) => (
           <figure>
