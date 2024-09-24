@@ -1,0 +1,22 @@
+.footerStyling {
+    margin-top: 2rem;
+    border-top: 4px solid #1f1f1f;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+
+    h4 {
+        padding-top: 1rem;
+        font-size: 24px;
+    }
+
+    p {
+        font-size: 30px;
+    }
+
+    img {
+        margin-top: 2rem;
+    }
+}
