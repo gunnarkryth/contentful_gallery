@@ -1,9 +1,13 @@
 import * as contentful from "contentful";
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+
 import { useEffect, useState } from "react";
 
 import s from "./Style.module.scss";
 
 export const Gallery = () => {
+  const [header, setHeader] = useState();
+  const [description, setDescription] = useState();
   const [gallery, setGallery] = useState();
 
   const client = contentful.createClient({
@@ -12,6 +16,17 @@ export const Gallery = () => {
   });
 
   useEffect(() => {
+    client.getEntries({ content_type: "header" }).then(
+      (res) => setHeader(res)
+      // console.log(res)
+    );
+  }, []);
+  useEffect(() => {
+    client
+      .getEntries({ content_type: "description" })
+      .then((res) => setDescription(res));
+  }, []);
+  useEffect(() => {
     client
       .getEntries({ content_type: "kajkageGallery" })
       .then((res) => setGallery(res));
@@ -19,11 +34,14 @@ export const Gallery = () => {
   return (
     <>
       <header>
-        {/* <img src={item.fields.header.fields.file.url} alt="" /> */}
+        <img
+          src={header?.items[0]?.fields.headerImage.fields.file.url}
+          alt=""
+        />
       </header>
       <section>
         <article>
-        {/* {item.fields.title} */}
+          {documentToReactComponents(description?.items[0]?.fields.description)}
         </article>
       </section>
       <section className={s.image_grid}>
